@@ -1,0 +1,120 @@
+import java.math.BigInteger;
+
+public class MySpecialArrayUtils {
+	
+	/*Problem 1.a*/
+	public static void reverse(int[] arr) {
+		int len= arr.length;
+		int i=0;
+		for (i=0; i<(len/2); i++) {
+			int temp;
+			temp = arr[len- i - 1];
+			arr [len- i -1] = arr[i];
+			arr[i]=temp;
+		}
+	}
+	
+	/*Problem 1.b*/
+	public static int[] sumEvenOdd (int[] arr) {
+		int [] sum = new int[] {0,0};
+		int i=0;
+		if (arr.length<1) {
+			return sum;
+		}else {
+			for (i=0; i<arr.length; i++) {
+				if (arr[i]%2==0){
+					sum[0]= sum[0]+arr[i];
+				}else {
+					sum[1]= sum[1]+arr[i];
+				}
+			}
+			return sum;
+		}
+	}
+	
+	/*Problem 1.c*/
+	public static double average (int[] arr) {
+		BigInteger sum= new BigInteger ("0");
+		if(arr.length<1) {
+			return 0;
+		}else {
+			for(int i = 0; i<arr.length;i++) {
+				sum=sum.add(BigInteger.valueOf(arr[i]));
+			}
+		}
+		double av = sum.doubleValue()/arr.length;
+		return av;
+	}
+	
+	/*Problem 1.d*/
+	public static void moveValue (int [] arr, int val) {
+		int len=arr.length;
+		int temp=0;
+		for (int i=0; i<len; i++) {
+			while (arr[i]==val){
+				for(int j = i; j <len - 1; j++) {
+					temp= arr[j];
+					arr[j]=arr[j + 1];
+					arr[j + 1]= temp;
+				}
+				len= len - 1;
+			}
+		}
+	}
+	
+	/*Problems 1.e*/
+	/*the function can't be a (void) because it's a rectangular matrix so we have 2 solutions
+	 * 1- making it a void but the matrix to be square
+	 * 2- making it an int[] and the matrix is rectangular */
+	/*solution 1*/
+	public static void transpose1(int[][] arr) {
+		int row = arr.length;
+		int col = arr[0].length;
+		int temp=0;
+		for (int i=0; i<row; i++) {
+			for(int j=i; j<col; j++) {
+				temp= arr[i][j];
+				arr[i][j]=arr[j][i];
+				arr[j][i]=temp;
+			}
+		}
+	}
+	
+	/*solution 2*/
+	public static int[][] transpose2(int[][] arr) {
+		int row = arr.length;
+		int col = arr[0].length;
+		int[][] trans = new int [col][row];
+		for (int i=0; i<row; i++) {
+			for (int j=0; j<col; j++) {
+				trans[j][i]=arr[i][j];
+			}
+		}
+		return trans;
+	}
+	
+	/*Problem 2*/ 
+	public static void Fibonacci(int n) {
+		BigInteger n1= new BigInteger ("0");
+		BigInteger n2= new BigInteger ("1");
+		BigInteger n3= new BigInteger ("0");
+		if (n==1) {
+			System.out.print(n1);
+		}
+		else if (n==2) {
+			System.out.print(n3);
+		}
+		else {
+			for (int i=3; i<=n ;i++) {
+				n3=n1.add(n2);
+				n1=n2;
+				n2=n3;
+			}
+			System.out.println(n3);
+		}
+	}
+		
+	public static void main(String[] args) {
+		
+	}
+}
